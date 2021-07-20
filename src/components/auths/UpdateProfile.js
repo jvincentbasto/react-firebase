@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react"
-import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import { useAuth } from "contexts/AuthContext"
+
+
 
 export default function UpdateProfile() {
   const emailRef = useRef()
@@ -11,15 +13,20 @@ export default function UpdateProfile() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+
+
   function handleSubmit(e) {
     e.preventDefault()
+
+
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
-
     const promises = []
     setLoading(true)
     setError("")
+
+
 
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value))
@@ -27,6 +34,8 @@ export default function UpdateProfile() {
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value))
     }
+
+
 
     Promise.all(promises)
       .then(() => {
@@ -40,12 +49,15 @@ export default function UpdateProfile() {
       })
   }
 
+
   return (
     <>
       <div>
         <div>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <span variant="danger">{error}</span>}
+          
+
           <form onSubmit={handleSubmit}>
             <div id="email">
               <label>Email</label>
@@ -72,12 +84,17 @@ export default function UpdateProfile() {
                 placeholder="Leave blank to keep the same"
               />
             </div>
+          
+
             <button disabled={loading} className="w-100" type="submit">
               Update
             </button>
           </form>
+
         </div>
       </div>
+      
+      
       <div className="w-100 text-center mt-2">
         <Link to="/">Cancel</Link>
       </div>

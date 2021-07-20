@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react"
-import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import { useAuth } from "contexts/AuthContext"
+
+
 
 export default function Login() {
   const emailRef = useRef()
@@ -10,8 +12,10 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
+
   async function handleSubmit(e) {
     e.preventDefault()
+
 
     try {
       setError("")
@@ -25,8 +29,10 @@ export default function Login() {
       console.log('error',err)
     }
 
+
     setLoading(false)
   }
+
 
   return (
     <>
@@ -34,6 +40,8 @@ export default function Login() {
         <div>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <span variant="danger">{error}</span>}
+
+
           <form onSubmit={handleSubmit}>
             <div id="email">
               <label>Email</label>
@@ -43,15 +51,22 @@ export default function Login() {
               <label>Password</label>
               <input type="password" ref={passwordRef} required />
             </div>
+
+
             <button disabled={loading} className="w-100" type="submit">
               Log In
             </button>
           </form>
+
+
           <div className="w-100 text-center mt-3">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
+
         </div>
       </div>
+
+
       <div className="w-100 text-center mt-2">
         Need an account? <Link to="/signup">Sign Up</Link>
       </div>

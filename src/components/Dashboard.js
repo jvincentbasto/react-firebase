@@ -1,7 +1,9 @@
 import React, { useState } from "react"
-import { useAuth } from "../contexts/AuthContext"
 import { Link, useHistory } from "react-router-dom"
-import SnapshotFirebaseAdvanced from 'SnapshotFirebaseAdvanced';
+
+import { useAuth } from "contexts/AuthContext"
+import Crud from 'components/Crud'
+
 
 
 export default function Dashboard() {
@@ -9,8 +11,11 @@ export default function Dashboard() {
   const { currentUser, logout } = useAuth()
   const history = useHistory()
 
+
+
   async function handleLogout() {
     setError("")
+
 
     try {
       await logout()
@@ -20,6 +25,8 @@ export default function Dashboard() {
     }
   }
 
+
+
   return (
     <>
       <div>
@@ -27,17 +34,23 @@ export default function Dashboard() {
           <h2 className="text-center mb-4">Profile</h2>
           {error && <span variant="danger">{error}</span>}
           <strong>Email:</strong> {currentUser.email}
+
+
           <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
             Update Profile
           </Link>
         </div>
       </div>
+
+
       <div className="w-100 text-center mt-2">
         <button variant="link" onClick={handleLogout}>
           Log Out
         </button>
       </div>
-      <SnapshotFirebaseAdvanced />
+
+
+      <Crud />
     </>
   )
 }

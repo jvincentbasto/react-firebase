@@ -1,10 +1,12 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import firebase from './firebase';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-// import { AuthContext } from './auth/Auth';
+
+import firebase from 'firebase/firebaseApp';
 import { useAuth } from 'contexts/AuthContext';
 
-function SnapshotFirebaseAdvanced() {
+
+
+export default function Crud() {
   const { currentUser } = useAuth();
   const currentUserId = currentUser ? currentUser.uid : null;
   const [schools, setSchools] = useState([]);
@@ -14,6 +16,8 @@ function SnapshotFirebaseAdvanced() {
   const [score, setScore] = useState('');
 
   const ref = firebase.firestore().collection('schools');
+
+
 
   //REALTIME GET FUNCTION
   function getSchools() {
@@ -34,10 +38,14 @@ function SnapshotFirebaseAdvanced() {
       });
   }
 
+
+
   useEffect(() => {
     getSchools();
     // eslint-disable-next-line
   }, []);
+
+
 
   // ADD FUNCTION
   function addSchool() {
@@ -62,6 +70,8 @@ function SnapshotFirebaseAdvanced() {
       });
   }
 
+
+
   //DELETE FUNCTION
   function deleteSchool(school) {
     ref
@@ -71,6 +81,8 @@ function SnapshotFirebaseAdvanced() {
         console.error(err);
       });
   }
+
+
 
   // EDIT FUNCTION
   function editSchool(school) {
@@ -88,9 +100,11 @@ function SnapshotFirebaseAdvanced() {
       });
   }
 
+
+
   return (
-    <Fragment>
-      <h1>Schools (SNAPSHOT adv.)</h1>
+    <>
+      <h1>Schools (Advance Snapshot | CRUD)</h1>
       <div className="inputBox">
         <h3>Add New</h3>
         <h6>Title</h6>
@@ -109,8 +123,12 @@ function SnapshotFirebaseAdvanced() {
         <textarea value={desc} onChange={(e) => setDesc(e.target.value)} />
         <button onClick={() => addSchool()}>Submit</button>
       </div>
+
+
       <hr />
       {loading ? <h1>Loading...</h1> : null}
+
+
       {schools.map((school) => (
         <div className="school" key={school.id}>
           <h2>{school.title}</h2>
@@ -123,8 +141,7 @@ function SnapshotFirebaseAdvanced() {
           </div>
         </div>
       ))}
-    </Fragment>
+
+    </>
   );
 }
-
-export default SnapshotFirebaseAdvanced;
