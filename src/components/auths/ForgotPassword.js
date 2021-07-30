@@ -29,37 +29,37 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <div>
-        <div>
-          <h2 className="text-center mb-4">Password Reset</h2>
-          {error && <span variant="danger">{error}</span>}
-          {message && <span variant="success">{message}</span>}
+      <div className="w-full max-w-sm bg-gray-300 p-8 rounded-lg shadow-xl">
+
+        <h2 className="text-center mb-12">Password Reset</h2>
+        {error && <span variant="text-red-600">{error}</span>}
+        {message && <span variant="text-green-600">{message}</span>}
 
 
-          <form onSubmit={handleSubmit}>
-            <div id="email">
-              <label>Email</label>
-              <input type="email" ref={emailRef} required />
-            </div>
-          
-
-            <button disabled={loading} className="w-100" type="submit">
-              Reset Password
-            </button>
-          </form>
-          
-
-          <div className="w-100 text-center mt-3">
-            <Link to="/login">Login</Link>
+        <form onSubmit={handleSubmit}>
+          <div id="email" className="flex flex-wrap mb-8">
+            {/*<label className="w-full mb-2">Email</label>*/}
+            <input type="email" ref={emailRef} placeholder="Email" required className="w-full border-2 border-gray-400 hover:border-gray-500 focus:border-blue-400 p-2 rounded-lg shadow-lg"/>
           </div>
-        
-        </div>
-      </div>
-      
 
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
+          <button type="submit" disabled={loading} className="w-full bg-blue-400 hover:bg-blue-300 focus:bg-blue-500 p-2 rounded-lg shadow-lg mb-12">
+            Reset Password
+          </button>
+        </form>
+
+
+        <hr className="border-t-2 border-gray-400 mb-8"/>
+
+
+        <div className="w-full text-center mb-2">
+          Need an account? <Link to="/signup" className="text-gray-600 hover:text-blue-400 focus:text-blue-600">Sign Up</Link>
+        </div>
+
+        <div className="w-full text-center">
+          Already have an account? <Link to="/login" className="text-gray-600 hover:text-blue-400 focus:text-blue-600">Log In</Link>
+        </div>
+
+      </div>    
     </>
   )
 }

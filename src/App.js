@@ -14,20 +14,16 @@ export default function App() {
   return (
     <>
       <AuthProvider>
-        <div className="d-flex align-items-center justify-content-center"
-          style={{ minHeight: "100vh" }}>
-          <div className="w-100" style={{ maxWidth: "400px" }}>
-
-              <Router>
-                <Switch>
-                  <PrivateRoute exact path="/" component={Homepage} />
-                  <AuthRoutes />
-                </Switch>
-              </Router>
+        <div className="max-w-full w-auto mx-auto h-auto min-h-screen bg-gray-50">
           
-          </div>
-        </div>
+          <Router>
+            <Switch>
+              <PrivateRoute exact path="/" component={Homepage} />
+              <AuthRoutes />
+            </Switch>
+          </Router>
 
+        </div>
       </AuthProvider>
     </>
   );

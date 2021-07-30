@@ -12,10 +12,12 @@ import ForgotPassword from "components/auths/ForgotPassword"
 export default function AuthRoutes() {
   return (
     <>
-      <PrivateRoute path="/update-profile" component={UpdateProfile} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/forgot-password" component={ForgotPassword} />
+      <div className="container w-auto mx-auto h-auto min-h-screen flex justify-center items-center">
+        <PrivateRoute path="/update-profile" component={UpdateProfile} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+      </div>
     </>
   )
 }
